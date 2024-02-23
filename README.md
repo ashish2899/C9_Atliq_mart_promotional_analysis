@@ -111,14 +111,15 @@
 
 ---
 
-4. **Produce a report that calculates the Incremental Sold Quantity (ISU%) for each category during the Diwali campaign. Additionally, provide rankings for the categories based on their ISU%. The report will include three key fields: **
+4. **Produce a report that calculates the Incremental Sold Quantity (ISU%) for each category during the Diwali campaign. Additionally, provide rankings for the categories based on their ISU%. The report will include three key fields:**
 
 - category,
 - isu%, and
 - rank order.
+
   **This information will assist in assessing the category-wise success and impact of the Diwali campaign on incremental sales.**
 
-  ###### _<span style="color:#0fb503">**Note:**</span> ISU% (Incremental Sold Quantity Percentage) is calculated as the percentage increase/decrease in quantity sold (after promo) compared to quantity sold (before promo)_
+###### _<span style="color:#0fb503">**Note:**</span> ISU% (Incremental Sold Quantity Percentage) is calculated as the percentage increase/decrease in quantity sold (after promo) compared to quantity sold (before promo)_
 
 #### SQL Query:-
 
@@ -182,7 +183,48 @@ SELECT
         )
     ) * 100 AS incremental_revenue_percentage
 FROM
-    your_table_name;
+    promo_discount;
 ```
 
 This SQL query will give you the incremental revenue percentage across all records in your table. Adjust the table name and column names accordingly based on your actual schema.
+
+---
+
+5. **Create a report featuring the Top 5 products, ranked by Incremental Revenue Percentage (IR%), across all campaigns. The report will provide essential information including product name, category, and ir%. This analysis helps identify the most successful products in terms of incremental revenue across our campaigns, assisting in product optimization.**
+
+#### SQL Query:-
+
+```SQL
+    SELECT
+        p.product_name,
+        p.category,
+        ROUND((
+            (
+                SUM(
+                    pd.discount_price * pd.quantity_sold_after_promo
+                ) - SUM(
+                    pd.base_price * pd.quantity_sold_before_promo
+                )
+            ) / SUM(
+                pd.base_price * pd.quantity_sold_before_promo
+            )
+        ) * 100,2) AS incremental_revenue_percentage
+    FROM promo_discount pd
+    JOIN dim_products p
+        ON pd.product_code = p.product_code
+    GROUP BY p.product_name, p.category
+    ORDER BY incremental_revenue_percentage DESC
+    LIMIT 5;
+```
+
+#### Result :-
+
+| product_name                         | category        | incremental_revenue_percentage |
+| ------------------------------------ | --------------- | -----------------------------: |
+| Atliq_Home_Essential_8_Product_Combo | Combo1          |                         136.11 |
+| Atliq_waterproof_Immersion_Rod       | Home Appliances |                          83.09 |
+| Atliq_High_Glo_15W_LED_Bulb          | Home Appliances |                          81.49 |
+| Atliq_Double_Bedsheet_set            | Home Care       |                          79.13 |
+| Atliq_Curtains                       | Home Care       |                          77.67 |
+
+---
