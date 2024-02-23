@@ -1,6 +1,33 @@
 # Atliq Marts Promotional Analysis
 
-### Create a view for discount price
+<div align="right">
+
+#### Created By - Ashish Kamble @Aspiring Data Analyst _[Linkeldin Profile](https://www.linkedin.com/in/ashish-ak/)_
+
+</div>
+
+#### Live Dashboard at Novypro [Live_link_Novypro]()
+
+#### Linkeldin post for this project with presentation video [Link]()
+
+#### Presentation ppt at Canva [Link]()
+
+#
+
+### Table of Content
+
+1. [Create a view for discount price](#create-a-view-for-discount-price-promo_discount)
+2. [Ad_hoc Request](#ad_hoc-requests)
+   - [Request_01](#request_01)
+   - [Request_02](#request_02)
+   - [Request_03](#request_03)
+   - [Request_04](#request_04)
+   - [Request_05](#request_05)
+3. [Incremental Revenue](#incremental-revenue)
+
+#
+
+### Create a view for discount price _[promo_discount](https://github.com/ashish2899/C9_Atliq_mart_promotional_analysis/blob/main/ad_hoc_request/promo_discount.sql)_
 
 ```SQL
     CREATE VIEW `promo_discount` AS
@@ -26,9 +53,13 @@
 
 ### AD_HOC Requests
 
-1. **Provide a list of products with a base price greater than 500 and that are featured in promo type of 'BOGOF' (Buy One Get One Free). This information will help us identify high-value products that are currently being heavily discounted, which can be useful for evaluating our pricing and promotion strategies.**
+#
 
-#### SQL Query:-
+###### _<span style="color:#c400f5">[Request_01]</span>_
+
+Provide a list of products with a base price greater than 500 and that are featured in promo type of 'BOGOF' (Buy One Get One Free). This information will help us identify high-value products that are currently being heavily discounted, which can be useful for evaluating our pricing and promotion strategies.
+
+#### [SQL Query](https://github.com/ashish2899/C9_Atliq_mart_promotional_analysis/blob/main/ad_hoc_request/request_01.sql) :-
 
 ```SQL
     SELECT
@@ -50,9 +81,11 @@
 
 ---
 
-2. **Generate a report that provides an overview of the number of stores in each city. The results will be sorted in descending order of store counts, allowing us to identify the cities with the highest store presence. The report includes two essential fields: city and store count, which will assist in optimizing our retail operations.**
+###### _<span style="color:#c400f5">[Request_02]</span>_
 
-#### SQL Query:-
+Generate a report that provides an overview of the number of stores in each city. The results will be sorted in descending order of store counts, allowing us to identify the cities with the highest store presence. The report includes two essential fields: city and store count, which will assist in optimizing our retail operations.
+
+#### [SQL Query](https://github.com/ashish2899/C9_Atliq_mart_promotional_analysis/blob/main/ad_hoc_request/request_02.sql) :-
 
 ```SQL
     SELECT
@@ -80,7 +113,9 @@
 
 ---
 
-3. **Generate a report that displays each campaign along with the total revenue generated before and after the campaign? The report includes three key fields:**
+###### _<span style="color:#c400f5">[Request_03]</span>_
+
+Generate a report that displays each campaign along with the total revenue generated before and after the campaign? The report includes three key fields:
 
 - campaign_name,
 - total_revenue(before_promotion),
@@ -88,7 +123,7 @@
 
   **This report should help in evaluating the financial impact of our promotional campaigns. (Display the values in millions)**
 
-#### SQL Query:-
+#### [SQL Query](https://github.com/ashish2899/C9_Atliq_mart_promotional_analysis/blob/main/ad_hoc_request/request_03.sql) :-
 
 ```SQL
     SELECT
@@ -111,17 +146,19 @@
 
 ---
 
-4. **Produce a report that calculates the Incremental Sold Quantity (ISU%) for each category during the Diwali campaign. Additionally, provide rankings for the categories based on their ISU%. The report will include three key fields:**
+###### _<span style="color:#c400f5">[Request_04]</span>_
+
+Produce a report that calculates the Incremental Sold Quantity (ISU%) for each category during the Diwali campaign. Additionally, provide rankings for the categories based on their ISU%. The report will include three key fields:
 
 - category,
 - isu%, and
 - rank order.
 
-  **This information will assist in assessing the category-wise success and impact of the Diwali campaign on incremental sales.**
+This information will assist in assessing the category-wise success and impact of the Diwali campaign on incremental sales.
 
 ###### _<span style="color:#0fb503">**Note:**</span> ISU% (Incremental Sold Quantity Percentage) is calculated as the percentage increase/decrease in quantity sold (after promo) compared to quantity sold (before promo)_
 
-#### SQL Query:-
+#### [SQL Query](https://github.com/ashish2899/C9_Atliq_mart_promotional_analysis/blob/main/ad_hoc_request/request_04.sql) :-
 
 ```SQL
     WITH isu_pct AS (
@@ -190,9 +227,11 @@ This SQL query will give you the incremental revenue percentage across all recor
 
 ---
 
-5. **Create a report featuring the Top 5 products, ranked by Incremental Revenue Percentage (IR%), across all campaigns. The report will provide essential information including product name, category, and ir%. This analysis helps identify the most successful products in terms of incremental revenue across our campaigns, assisting in product optimization.**
+###### _<span style="color:#c400f5">[Request_05]</span>_
 
-#### SQL Query:-
+Create a report featuring the Top 5 products, ranked by Incremental Revenue Percentage (IR%), across all campaigns. The report will provide essential information including product name, category, and ir%. This analysis helps identify the most successful products in terms of incremental revenue across our campaigns, assisting in product optimization.
+
+#### [SQL Query](https://github.com/ashish2899/C9_Atliq_mart_promotional_analysis/blob/main/ad_hoc_request/request_05.sql) :-
 
 ```SQL
     SELECT
